@@ -53,7 +53,7 @@ class DealProductAdmin(admin.ModelAdmin):
     search_fields = ('id', 'product__name', 'deal__name', 'quantity', 'price')
 
 @admin.register(Category)
-class Category(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'created_at')
     list_filter = ('name', 'created_at')
     search_fields = ('id', 'name', 'created_at')

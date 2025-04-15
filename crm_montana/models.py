@@ -49,7 +49,7 @@ class Client(models.Model):
 class Deal(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     image_url = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -69,7 +69,7 @@ class DealClient(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
     image_url = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -81,7 +81,7 @@ class DealProduct(models.Model):
     deal=models.ForeignKey(Deal,on_delete=models.CASCADE, related_name='products')
     product=models.ForeignKey(Product,on_delete=models.CASCADE, related_name='deals')
     quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     added_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -99,8 +99,8 @@ class Category(models.Model):
         return self.name
 
 class ProductCategory(models.Model):
-    product=models.ForeignKey(Product,on_delete=models.CASCADE, related_name='category')
-    category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name='category')
+    product=models.ForeignKey(Product,on_delete=models.CASCADE, related_name='product_categories')
+    category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name='product_categories')
     added_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
