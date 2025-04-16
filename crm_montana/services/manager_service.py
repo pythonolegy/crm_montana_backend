@@ -1,7 +1,7 @@
 from crm_montana.models import Manager
 
 def get_manager_data():
-    return Manager.objects.prefetch_related('managers', 'employees')
+    return Manager.objects.prefetch_related('departments', 'employees')
 
 def create_manager(**validated_data):
     return Manager.objects.create(**validated_data)
