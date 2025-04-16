@@ -2,3 +2,6 @@ django==5.2
 psycopg2-binary
 pytest
 pytest-django
+djangorestframework
+markdown
+django-filter
