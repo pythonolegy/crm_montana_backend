@@ -1,7 +1,7 @@
 from crm_montana.models import Employee
 
 def get_employee_data():
-    return Employee.objects.prefetch_related('managers', 'employees')
+    return Employee.objects.prefetch_related('managers', 'departments')
 
 def create_employee(**validated_data):
     return Employee.objects.create(**validated_data)
