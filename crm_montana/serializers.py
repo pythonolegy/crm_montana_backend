@@ -1,9 +1,11 @@
 from rest_framework import serializers
-from crm_montana.models import Department, Manager, Client, Employee
+from crm_montana.models import Department, Manager, Client, Employee, Deal, DealClient
 from crm_montana.services.department_service import create_department, update_department
 from crm_montana.services.manager_service import create_manager, update_manager
 from crm_montana.services.client_service import create_client, update_client
 from crm_montana.services.employee_service import create_employee, update_employee
+from crm_montana.services.deal_service import create_deal, update_deal
+from crm_montana.services.deal_client_service import create_deal_client, update_deal_client
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -49,3 +51,28 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         return update_employee(instance, **validated_data)
+
+class DealSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Deal
+        fields = '__all__'
+
+    def create(self, validated_data):
+        return create_deal(**validated_data)
+
+    def update(self, instance, validated_data):
+        return update_deal(instance, **validated_data)
+
+class DealClientSerializer(serializers.ModelSerializer):
+    deal = serializers.PrimaryKeyRelatedField(queryset=Deal.objects.all())
+    client = serializers.PrimaryKeyRelatedField(queryset=Client.objects.all())
+
+    class Meta:
+        model = DealClient
+        fields = '__all__'
+
+    def create(self, validated_data):
+        return create_deal_client(**validated_data)
+
+    def update(self, instance, validated_data):
+        return update_deal_client(instance, **validated_data)

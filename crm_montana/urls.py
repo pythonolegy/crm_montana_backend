@@ -18,13 +18,15 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
-from crm_montana.views import DepartmentViewSet, ManagerViewSet, ClientViewSet, EmployeeViewSet
+from crm_montana.views import DepartmentViewSet, ManagerViewSet, ClientViewSet, EmployeeViewSet, DealViewSet, DealClientViewSet
 
 router = DefaultRouter()
 router.register(r'departments', DepartmentViewSet)
 router.register(r'managers', ManagerViewSet)
 router.register(r'clients', ClientViewSet)
 router.register(r'employees', EmployeeViewSet)
+router.register(r'deals', DealViewSet)
+router.register(r'deals_clients', DealClientViewSet)
 
 
 urlpatterns = [
