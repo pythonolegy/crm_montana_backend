@@ -1,7 +1,7 @@
 from crm_montana.models import Client
 
 def get_client_data():
-    return Client.objects.prefetch_related('managers', 'employees')
+    return Client.objects.prefetch_related('employee', 'employee__manager')
 
 def create_client(**validated_data):
     return Client.objects.create(**validated_data)
