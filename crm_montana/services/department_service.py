@@ -1,5 +1,8 @@
 from crm_montana.models import Department
 
+def get_departments_data():
+    return Department.objects.prefetch_related('managers', 'employees')
+
 def create_department(**data):
     return Department.objects.create(**data)
 
