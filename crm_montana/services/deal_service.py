@@ -1,7 +1,7 @@
 from crm_montana.models import Deal
 
 def get_deal_data():
-    return Deal.objects.prefetch_related()
+    return Deal.objects.all()
 
 def create_deal(**validated_data):
     return Deal.objects.create(**validated_data)
